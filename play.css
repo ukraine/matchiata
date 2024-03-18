@@ -1,5 +1,5 @@
 body {
-   font-family: 'Victor Mono', sans-serif !important;
+   font-family: 'Comfortaa', sans-serif !important;
    background-color: #f9f9f9;
  }
  h1 {
@@ -19,6 +19,12 @@ font-family: sans-serif;
    margin-bottom: 3%;   
 }
 
+input[type="text"]::placeholder {
+             
+   /* Firefox, Chrome, Opera */
+   text-align: center;
+}
+
 .contentFooter {
    font-size: 70%;
    padding-top: 14px;
@@ -32,6 +38,7 @@ font-family: sans-serif;
  .green {background-color: green  !important; color: white; transition: width 0.2s linear;}
  .red {background-color: red  !important; color: white; transition: width 0.3s linear;}
  .orange {background-color: orange !important; color: white; transition: width 0.5s linear;}
+ .container input {width: 100%; height: 200%;}
  .container, #progressMessage, #statistics {
    display: flex;
    justify-content: center;
@@ -40,11 +47,28 @@ font-family: sans-serif;
 
 #statistics p {line-height: 200%;}
 
- textarea {
-   height: 200px !important;
-   width: 98% !important;
+textarea {
+	height: 200px !important;
+	width: 98% !important;
+	border-radius: 15px;
+	padding: 15px;
+}
 
+
+textarea {
+   -moz-appearance:none;
+   outline:0px none transparent;
  }
+ 
+ textarea:focus, input:focus{
+     outline: 0;
+ }
+ 
+ *:focus {
+     outline: 0;
+ }
+
+
  .column {
    margin: 0 20px;
  }
@@ -52,9 +76,9 @@ font-family: sans-serif;
    display: block;
    margin: 0px auto;
    padding: 10px 20px;
-   font-size: 16px;
+   font-size: 22px;
    border-radius: 31px !important;
-   width: 98% !important;
+   width: 100% !important;
    background-color: rgb(251 99 64/1) !important;
    
    color: white !important;
@@ -97,6 +121,9 @@ min-height: 70vh;
    align-items: center;
 }
 
+#containerStatusRunning {text-align: center;}
+
+#containerStatusRunning b {font-size: 150%;}
 
 #livesContainer {
    text-align: center;
@@ -104,13 +131,18 @@ min-height: 70vh;
 }
 
 #prepareButton {
-   display: flex;
-   align-items: center; /* Align items vertically */
-   justify-content: center; /* Align items horizontally */
-   height: 100%;
-   border: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	border: 0px;
+	margin-top: -25px !important;
+	z-index: 12;
+	position: relative;
+	width: 100% !important;
+	margin: 0 13px;
+	height: auto;
 }
-
 #timer {font-size: 200%; text-align: center;}
 
 .createMyGame {
@@ -166,3 +198,44 @@ min-height: 70vh;
    background-color: #4CAF50; /* Green color for successful matches */
   }
   
+
+/* SPIN LOADER */
+
+#loader {
+   margin-top: 35px;   
+}
+
+.loader {
+   width: 48px;
+   height: 48px;
+   display: inline-block;
+   position: relative;
+ }
+ .loader::after,
+ .loader::before {
+   content: '';  
+   box-sizing: border-box;
+   width: 48px;
+   height: 48px;
+   border-radius: 50%;
+   border: 2px solid #2b2121;
+   position: absolute;
+   left: 0;
+   top: 0;
+   animation: animloader 2s linear infinite;
+ }
+ .loader::after {
+   animation-delay: 1s;
+ }
+ 
+ @keyframes animloader {
+   0% {
+     transform: scale(0);
+     opacity: 1;
+   }
+   100% {
+     transform: scale(1);
+     opacity: 0;
+   }
+ }
+ 

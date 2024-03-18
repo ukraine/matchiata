@@ -409,4 +409,3 @@ function getLevelName(score) {
    const level = levels.find(level => score <= level.maxScore);
    return level ? level.name : "Unknown level"; // Fallback, in case no level matches
  }
- 

@@ -5,6 +5,8 @@ define('DEFAULT_SHORT_URL_LENGTH', '8');
 define('PRIMARY_DOMAIN','https://yatsiv.com/apps/lingo/');
 define("SPREADSHEETS_API", "https://apps.yatsiv.com/sheets/");
 
+$rand = md5(rand());
+
 // Game Specific Settings
 
 $settings = [

@@ -13,8 +13,12 @@ $translation['en'] = [
 
    'buttonInProgress' => "Preparing the game. Please wait<span id='dots'>...</span>",
    'placeHolder' => "Specify target language\nSpecify topic",
+   'placeHolderSpecifyLang' => "Specify target language",
+   'placeHolderSpecifyTopic' => "Specify topic",
    'buttonDefaultName' => "Generate a game",
    'buttonRestartGame' => "Play again",
+   'progressMessageGenerating' => 'Generating game. Please wait...',
+
 
    // Play
 
@@ -66,6 +70,10 @@ $translation['uk'] = [
    'buttonDefaultName' => 'Створити гру',
    'buttonRestartGame' => 'Грати ще раз',
 
+   'placeHolderSpecifyLang' => "Вкажи мову яку вивчаєш",
+   'placeHolderSpecifyTopic' => "Вкажи тему",
+   'progressMessageGenerating' => 'Створю гру. Зачекай будь ласка...',
+
    // Play
 
    'heading' => 'Matchata', // &mdash; аплікація для вивчення мов
@@ -115,6 +123,10 @@ $translation['fr'] = [
    'placeHolder' => "Spécifiez la langue cible\nSpécifiez le sujet",
    'buttonDefaultName' => 'Générer un jeu',
    'buttonRestartGame' => 'Rejouer',
+
+   'placeHolderSpecifyLang' => "Indiquez la langue que vous étudiez",
+   'placeHolderSpecifyTopic' => "Indiquez le sujet",
+   'progressMessageGenerating' => 'Création du jeu. Veuillez patienter...', 
 
    // Play
 

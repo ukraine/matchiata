@@ -37,7 +37,7 @@ When the game is initialized for the first time, the text on the button should c
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Matching Game</title>
+  <title></title>
 
   </style>
 
@@ -51,14 +51,26 @@ When the game is initialized for the first time, the text on the button should c
 
 <br><br><br><br>
 
+<div id='containerStatusRunning' style='display: none;'>
+
+   <p>Learning <b id='languageSpecified'></b>
+   <br>Topic <b id='topicSpecified'></b>
+
+</div>
+
 <section class="container" id="forms">
    <fieldset style='border:0;'>
       <textarea id="text" rows="10" cols="50" placeholder='<?=$placeHolder?>'></textarea>
-      <button id="prepareButton" style='height: auto; margin: 5px 0;' onclick="prepareAndLaunchGame()" disabled><?=$buttonDefaultName;?></button>
+      <button id="prepareButton" style='display: none;' onclick="prepareAndLaunchGame()" disabled><?=$buttonDefaultName;?></button>
    </fieldset>
 </section>
 
-<div id="progressMessage" onclick='copyDivContent("progressMessage")'></div>
+<div id='loader' style='display: none; text-align :center'>
+   <span class="loader"></span>
+</div>
+
+<div id="progressMessage" onclick='copyDivContent("progressMessage")'>
+</div>
 
 <div id='copystatus'></div>
 <div id='status' onclick="hideStatus('status');"></div>
@@ -197,12 +209,23 @@ function playGame() {
   startTimer();
   
 } 
+
+const textareaValue = document.getElementById('text');
+
+const prepareButton = document.getElementById('prepareButton');
       
 async function prepareAndLaunchGame() {
-  const prepareButton = document.getElementById('prepareButton');
+  
   const progressMessage = document.getElementById('progressMessage');
+  const loader = document.getElementById('loader');
+  loader.style.display = 'block';
+  const containerForms = document.getElementById('forms');
+  const containerStatusRunning = document.getElementById('containerStatusRunning');
+  const languageSpecified = document.getElementById('languageSpecified');
+  const topicSpecified = document.getElementById('topicSpecified');
+
   const buttonNames = [
-    'Generating game. Please wait...'
+    '<?=$translation[$language]['progressMessageGenerating']?>'
   ];
 
   let currentButtonIndex = 0;
@@ -219,7 +242,7 @@ async function prepareAndLaunchGame() {
   const formData = new FormData();
 
 // Split the string into an array of lines
-const lines = document.getElementById('text').value.split('\n');
+const lines = textareaValue.value.split('\n');
 
 // The first line
 const targetLanguage = lines[0];
@@ -227,8 +250,16 @@ const targetLanguage = lines[0];
 // The rest of the lines joined back into a string
 const text = lines.slice(1).join('\n');
 
+containerForms.style.display = 'none';
+containerStatusRunning.style.display = 'block';
+
+languageSpecified.innerText = targetLanguage;
+topicSpecified.innerText = text;
+
 // alert(targetLanguage);
 // alert(text);
+
+throw new Error("Something went badly wrong!");
 
   formData.append('text', text);
   formData.append('targetLanguage', targetLanguage);
@@ -272,6 +303,18 @@ if (followParam === '1') {
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('prepareButton').disabled = false;
+});
+
+const allowedCharacters = /^[ ,\n\a-zA-Z'\u0400-\u04FF]{5,}$/;
+
+// Add an input event listener to the input field
+textareaValue.addEventListener('input', function() {
+  // Check if the input matches the allowed characters and has at least 5 characters
+  if (allowedCharacters.test(textareaValue.value)) {
+   prepareButton.style.display = 'block'; // Show the button
+  } else {
+   prepareButton.style.display = 'none'; // Hide the button
+  }
 });
 
 
