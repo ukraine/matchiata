@@ -37,7 +37,7 @@ When the game is initialized for the first time, the text on the button should c
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+  <title><?=$translation[$language]['softName']?></title>
 
   </style>
 
@@ -53,8 +53,8 @@ When the game is initialized for the first time, the text on the button should c
 
 <div id='containerStatusRunning' style='display: none;'>
 
-   <p>Learning <b id='languageSpecified'></b>
-   <br>Topic <b id='topicSpecified'></b>
+   <p><?=$translation[$language]['progressMessageLearningLang']?> &mdash; <b id='languageSpecified'></b>
+   <br><?=$translation[$language]['progressMessageLearningTopic']?> &mdash; <b id='topicSpecified'></b>
 
 </div>
 
@@ -259,7 +259,7 @@ topicSpecified.innerText = text;
 // alert(targetLanguage);
 // alert(text);
 
-throw new Error("Something went badly wrong!");
+// throw new Error("Something went badly wrong!");
 
   formData.append('text', text);
   formData.append('targetLanguage', targetLanguage);
@@ -279,11 +279,18 @@ if (response.ok) {
    const text = await response.text(); // Get the response as text
   console.log(text); // Log it to see what's actually being returned
   const responseData = JSON.parse(text); // Now manually parse it
-  
-  // Get the value of the 'follow' query parameter from the URL
+
+let defaultHL = '<?=$language;?>';
+
+// Get the value of the 'follow' query parameter from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const followParam = urlParams.get('follow');
-const languageParam = urlParams.get('hl');
+let languageParam = urlParams.get('hl');
+
+// Check if 'hl' parameter is not found, then assign default language
+if (!languageParam) {
+    languageParam = defaultHL;
+}
 
 // Check if 'follow' is set to 1
 if (followParam === '1') {

@@ -139,23 +139,22 @@ async function prepareAndLaunchGame() {
    
    document.getElementById('startInstructions').style.display='block';
    document.getElementById('livesContainer').style.display='block';
-   document.getElementById('progressBarContainer').style.display='block'; 
+   document.getElementById('progressBarContainer').style.display='block';
 
    document.getElementById('shareGame').style.display = 'none';
-   inputText = "<?=str_replace(array("\r","\n"),array("\\r","\\n"), file_get_contents(CACHE_FILE_PREFIX . $_GET['short_url']))?>"; 
+   /* inputText = "<?=str_replace(array("\r","\n"),array("\\r","\\n"), file_get_contents(CACHE_FILE_PREFIX . $_GET['short_url']))?>"; */
 
-   /*
+   
    inputText = '<?=
    str_replace($srch, $rplc,file_get_contents(
       CACHE_FILE_PREFIX . $_GET['short_url']));
    ?>';
 
-*/
 // $inputText = json_encode($inputText);
    
    console.log(inputText);
    
-   playGame();
+   playGame2();
 
 }
 

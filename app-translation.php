@@ -18,6 +18,10 @@ $translation['en'] = [
    'buttonDefaultName' => "Generate a game",
    'buttonRestartGame' => "Play again",
    'progressMessageGenerating' => 'Generating game. Please wait...',
+   'progressMessageLearningLang' => 'Learning',
+   'progressMessageLearningTopic' => 'Topic',
+   
+
 
 
    // Play
@@ -73,6 +77,9 @@ $translation['uk'] = [
    'placeHolderSpecifyLang' => "Вкажи мову яку вивчаєш",
    'placeHolderSpecifyTopic' => "Вкажи тему",
    'progressMessageGenerating' => 'Створю гру. Зачекай будь ласка...',
+   
+   'progressMessageLearningLang' => 'Вчимо',
+   'progressMessageLearningTopic' => 'Тема',   
 
    // Play
 
@@ -101,6 +108,21 @@ $translation['uk'] = [
    'seconds' => 'с.',
    'game_restarted' => 'Гра перезапущена',
   
+   "contributors" => "Контрибутори",
+
+   "totalPoints" => "Загальна кількість балів",
+   "gamesPlayed" => "Зіграні ігри",
+   "averageAccuracy" => "Середня точність",
+   "heartsLeft" => "Залишилось сердець",
+   "yourProfile" => "Ваш профіль",
+   "mistakesMade" => "Помилки",
+   "totalMatches" => "Загальна кількість матчів",
+   "time" => "Час",
+   "accuracy" => "Точність",
+   "pointsEarned" => "Набрано балів",
+   "points" => "балів",
+   
+
    // Stats
 
    
@@ -128,8 +150,12 @@ $translation['fr'] = [
    'placeHolderSpecifyTopic' => "Indiquez le sujet",
    'progressMessageGenerating' => 'Création du jeu. Veuillez patienter...', 
 
+   'progressMessageLearningLang' => 'Apprentissage',
+   'progressMessageLearningTopic' => 'Sujet',
+
    // Play
 
+   "heading" => "Matchata", // &mdash; a language app
    'train_your_brain' => 'Améliorez votre compétence en langue étrangère',
    'to_win' => 'Pour gagner, associez tous les mots en temps opportun',
    'share_game' => 'Partager le jeu',
@@ -153,6 +179,22 @@ $translation['fr'] = [
    'minutes' => 'minutes',
    'seconds' => 'secondes',
    'game_restarted' => 'Jeu redémarré',
+
+
+   "contributors" => "Contributeurs",
+
+"totalPoints" => "Points totaux",
+"gamesPlayed" => "Parties jouées",
+"averageAccuracy" => "Précision moyenne",
+"heartsLeft" => "Cœurs restants",
+"yourProfile" => "Votre profil",
+"mistakesMade" => "Erreurs",
+"totalMatches" => "Total de parties",
+"time" => "Temps",
+"accuracy" => "Précision",
+"pointsEarned" => "Points gagnés",
+"points" => "points",
+
 
    "result_message" => "<h3>{result}</h3>
    <p>Gain de +<b>{pointsEarned}</b> points

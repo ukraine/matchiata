@@ -72,7 +72,7 @@ function startTimer() {
  
  function restartGame() {
    // Call the playGame function to restart the game without fetching new words
-   playGame();
+   playGame2();
  }
  
  function getElapsedTime() {
@@ -142,8 +142,8 @@ function sleep(ms) {
       });
   
       successfulMatches++;
-      console.log(successfulMatches);
-      console.log(totalMatches);
+      console.log(successfulMatches + "Successful matches");
+      console.log(totalMatches + "Total matches");
   
       // Calculate the progress percentage
       const progressPercentage = (successfulMatches / totalMatches) * 100;
@@ -241,6 +241,99 @@ function handleMatch_1(totalMatches) {
  
  } 
 
+ function playGame2() {
+   // Parse the JSON string to get the JavaScript object
+   const data = JSON.parse(inputText);
+   const commonWords = data.commonWords;
+
+   // Convert the commonWords object into an array of objects
+   let commonWordsArray = Object.keys(commonWords).map((key, index) => ({
+       index: index,
+       source: key,
+       target: commonWords[key]
+   }));
+
+   // Shuffle the array using the Fisher-Yates algorithm
+   function shuffleArray(array) {
+       for (let i = array.length - 1; i > 0; i--) {
+           const j = Math.floor(Math.random() * (i + 1));
+           [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+       }
+   }
+   shuffleArray(commonWordsArray);
+
+   // Your existing code to reset game state and prepare the UI
+   numberOfGamesPlayed++;
+   resetGameState();
+   const timerDiv = document.createElement('div');
+   timerDiv.id = 'timerOK';
+   document.getElementById('progressMessage').prepend(timerDiv);
+
+   prepareButton.innerHTML = buttonRestartGame;
+   prepareButton.onclick = restartGame;
+   prepareButton.style.display = 'none';
+
+   let startTime;
+   let endTime;
+
+   // Prepare the source and target columns
+   const sourceColumn = document.getElementById('sourceColumn');
+   const targetColumn = document.getElementById('targetColumn');
+   sourceColumn.innerHTML = '';
+   targetColumn.innerHTML = '';
+
+   // Start the timer
+   startTimer();
+
+   // Limit the number of items displayed in each column
+   commonWordsArray = commonWordsArray.slice(0, limitNumberOfWords);
+
+   shuffleArray(commonWordsArray);
+
+   // Split the shuffled and limited commonWordsArray into sources and targets
+   let sources = commonWordsArray.map(item => ({
+       index: item.index,
+       word: item.source,
+       matched: false
+   }));
+   let targets = commonWordsArray.map(item => ({
+       index: item.index,
+       word: item.target,
+       matched: false
+   }));
+
+   totalMatches = limitNumberOfWords;
+
+   let sourcesPlay = sources.slice(0, limitNumberOfWords);
+   let targetsPlay = targets.slice(0, limitNumberOfWords);
+
+   shuffleArray(sourcesPlay);
+   shuffleArray(targetsPlay);
+
+   console.log(sources.length + " number of words");
+
+   // Iterate over the sources and targets arrays to create the source and target elements
+   sourcesPlay.forEach(sourcesPlay => {
+       // Create and append the source element
+       const sourceElement = document.createElement('div');
+       sourceElement.textContent = sourcesPlay.word;
+       sourceElement.id = `source-${sourcesPlay.index}`;
+       sourceElement.onclick = () => toggleHighlight(sourceElement, totalMatches);
+       sourceColumn.appendChild(sourceElement);
+   });
+
+   targetsPlay.forEach(targetsPlay => {
+       // Create and append the target element
+       const targetElement = document.createElement('div');
+       targetElement.textContent = targetsPlay.word;
+       targetElement.id = `target-${targetsPlay.index}`;
+       targetElement.onclick = () => toggleHighlight(targetElement, totalMatches);
+       targetColumn.appendChild(targetElement);
+   });
+}
+
+
+
  
  function splitInputText(inputText) {
 
@@ -279,8 +372,8 @@ function handleMatch_1(totalMatches) {
    }
    });
 
-   console.log(source);
-   console.log(target);
+   // console.log(source);
+   // console.log(target);
 
    // throw new Error("My error");
 
@@ -298,6 +391,8 @@ function handleMatch_1(totalMatches) {
 async function handleMismatch(totalMatches) {
    
    unsuccessfulMatches++;
+
+   console.log(unsuccessfulMatches + "iteration");
 
    const totalives = numberOfMistakesAllowed - unsuccessfulMatches;
 

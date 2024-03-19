@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{HTTPS} !on [OR] RewriteCond %{HTTP_HOST}
+RewriteBase /lingo/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^play/([0-9a-zA-Z_]+)$				/apps/lingo/play.php?action=playGame&short_url=$1&%{QUERY_STRING} [L] 
+RewriteRule ^play2/([0-9a-zA-Z_]+)$				/apps/lingo/play.new.php?action=playGame&short_url=$1&%{QUERY_STRING} [L] 
+RewriteRule ^p/([0-9a-zA-Z_]+)$				   /apps/lingo/pages.php?page=$1 [L] 
